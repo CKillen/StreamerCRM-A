@@ -1,0 +1,261 @@
+/*
+#F4F6F3
+#C8908A
+#C8A1B3
+#C46A9E
+#594E54
+*/
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.CRM {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 60px 1fr 1fr;
+  grid-template-columns: 18% 1fr 1fr;
+  grid-template-areas: 
+  "head head head"
+  "chat-section card-section card-section"
+  "chat-section card-section card-section";
+}
+.chat-section {
+  grid-area: chat-section;
+  height: 100%;
+  border-top: 3px solid #C8908A !important;
+  background-color: #594E54;
+  color: #F4F6F3;
+  font-size: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.card-section {
+  padding: 10px;
+  grid-area: card-section;
+  background-color: #F4F6F3;
+  display: flex !important;
+  align-content: flex-start !important;
+  margin: 0 !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-wrap: wrap;
+}
+
+.blink {
+  animation: backgroundBlink 1s 2;
+}
+
+.head {
+  grid-area: head;
+  background-color: #594E54;
+  border-bottom: 3px solid #C8908A;
+  color: #F4F6F3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.menu-button {
+  background-color: #594E54 !important;
+  border: 2px solid #C8908A !important; 
+  color: #F4F6F3 !important;
+}
+
+.menu-button:hover {
+  background-color: #C8908A !important;
+}
+
+.ui.card:first-child {
+  margin-top: 1em;
+}
+
+.ui.card:last-child {
+  margin-bottom: 1em;
+}
+
+.ui.card {
+  height: 160px;
+  margin-right: 10px !important;
+}
+
+.ui.card:first-child {
+  margin-top: 1em !important;
+}
+
+.ui.card:last-child {
+  margin-bottom: 1em !important;
+}
+
+@keyframes backgroundBlink {
+  0% {
+    background-color: #F4F6F3;
+  }
+  50% {
+    background-color: #C8908A;
+  }
+  100% {
+
+    background-color: #F4F6F3;
+  }
+}
+
+.message-list:hover {
+  background-color: #C8908A;
+}
+
+.chat-list {
+  font-size: 14px !important;
+  vertical-align: middle !important;
+}
+
+.card {
+  width: 270px !important;
+}
+
+.card-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 5px 5px !important;
+}
+
+.input {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  background-color: #C8908A;
+}
+
+.card-icon-group {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  margin-left: auto !important;
+}
+
+.card-icon {
+  padding: 0 5px;
+}
+
+.card-icon {
+  color: #594E54 !important;
+}
+
+.card-icon:hover {
+  color: #C8908A !important;
+}
+
+.card-emphasize {
+  animation: emphasizeCard 2s infinite;
+}
+
+@keyframes emphasizeCard {
+  0% {
+    box-shadow: 0 0 5px 0px #C8908A;
+  }
+  50% {
+    box-shadow: 0 0 12px 12px #C8908A;
+  }
+  100% {
+    box-shadow: 0 0 5px 0px #C8908A;
+  }
+}
+
+/*Huge thanks to @tobiasahlin at http://tobiasahlin.com/spinkit/ */
+.spinner {
+  margin: 70px auto 0;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #594E54;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+.login {
+  grid-area: body;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;  
+  background-color: #F4F6F3;
+}
+
+.loader {
+  grid-area: body;  
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;  
+  background-color: #F4F6F3;
+}
+
+.signup-button-wrapper {
+  padding-top: 35px;
+}
+
+.form-button {
+  text-align: center;
+}
+
+.twitch-button > button {
+  background-color: #9146ff !important;
+  color: white !important;
+}
+
+.form-warn {
+  padding-top: 25px;
+  font-size: 12px;
+}
+
+.form-error {
+  color: red !important;
+}
+
+.CRM-not-loaded {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 18% 1fr 1fr;
+  grid-template-areas: 
+  "head head head"
+  "body body body"
+}
