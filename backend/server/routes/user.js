@@ -6,7 +6,7 @@ const config = require('../config/config');
 const { clientId } = require('../config/config');
 
 router.post('/signup', (routeReq, routeRes) => {
-  routeRes.redirect(`${config.twitchOauthUrl}/authorize?claims=${config.claims}&response_type=code&client_id=${config.clientSecret}&state=reee&redirect_uri=${config.oauthRedirect}&response_type=post&scope=${config.scope}`)
+  routeRes.redirect(`${config.twitchOauthUrl}authorize?claims=${config.claims}&response_type=code&client_id=${config.clientId}&state=reee&redirect_uri=${config.oauthRedirect}&response_type=post&scope=${config.scope}`)
 });
 
 router.get('/signupFinish', (routeRequest, routeResponse) => {
@@ -47,7 +47,7 @@ function grabUserInfo(token) {
 }
 
 function tokenPost(code) {
-  const apicall = `${config.twitchOauthUrl}/token?client_id=${config.clientId}&client_secret=${config.clientSecret}&grant_type=authorization_code&redirect_uri=${config.oauthRedirect}&code=${code}`;
+  const apicall = `${config.twitchOauthUrl}token?client_id=${config.clientId}&client_secret=${config.clientSecret}&grant_type=authorization_code&redirect_uri=${config.oauthRedirect}&code=${code}`;
   return new Promise((resolve, reject) => {
     Axios.post(apicall)
       .then(response => resolve(response))
