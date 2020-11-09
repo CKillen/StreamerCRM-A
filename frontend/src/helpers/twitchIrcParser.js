@@ -127,4 +127,4 @@ function parseColor(tags, name) {
   return color;
 }
 
-module.exports = twitchIrcParser;
+export default twitchIrcParser;
