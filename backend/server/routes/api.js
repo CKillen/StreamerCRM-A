@@ -5,6 +5,9 @@ const { validateApikey, findOrCreateViewer, updateViewer } = require('../db/dbCa
 router.use((req, res, next) => {
   console.log("Call has been made!")
   let { authorization } = req.headers;
+  if(authorization === undefined) {
+    authorization = '';
+  }
   const apikey = authorization.split("apikey ")[1];
     validateApikey(apikey)
       .then(response => {

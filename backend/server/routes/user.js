@@ -18,11 +18,16 @@ router.get('/signupFinish', (routeRequest, routeResponse) => {
       .then(response => {
           routeResponse.redirect(`${config.redirect}?apikey=${response}`);
       })
-      .catch(error => routeResponse.redirect(`${config.redirect}?error=true`))
+      .catch(error => {
+	      console.log('loginn', error)
+	      routeResponse.redirect(`${config.redirect}?error=true`)
+      })
     })
     .catch(error => routeResponse.redirect(`${config.redirect}?error=true`))
   })
-  .catch(error => routeResponse.redirect(`${config.redirect}?error=true`))
+  .catch(error => {
+	  console.log('token', error);
+	  routeResponse.redirect(`${config.redirect}?error=true`)})
 })
 
 function grabUserInfo(token) {
@@ -38,7 +43,7 @@ function grabUserInfo(token) {
       const userInfo = {
         email,
         id,
-        username: display_name,
+        username: display_name.toLowerCase(),
       }
       resolve(userInfo)
     })

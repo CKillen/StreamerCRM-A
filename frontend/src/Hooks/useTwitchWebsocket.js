@@ -12,7 +12,7 @@ export const useTwitchMessages = (username) => {
   const [chats, setChats] = useState([]);
   const webSocket = useRef(null)
   useEffect(() => {
-    webSocket.current = new WebSocket('ws://irc-ws.chat.twitch.tv:80');
+    webSocket.current = new WebSocket('wss://irc-ws.chat.twitch.tv:443');
     webSocket.current.onopen = () => {
       webSocket.current.send(`pass ${Config.oauth}`);
       webSocket.current.send(`nick ${Config.nickname}`);

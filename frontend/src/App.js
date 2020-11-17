@@ -25,7 +25,7 @@ function App()  {
       window.location = window.location.href.split("?")[0];
     }
   }
-  let { complete, data } = useApi(`${config.apiUrl}validate`);
+  let { complete, data } = useApi(`${config.apiUrl}/validate`);
   if(complete === false) {
     return (
       <div className="CRM-not-loaded">
