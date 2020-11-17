@@ -259,3 +259,10 @@ body {
   "head head head"
   "body body body"
 }
+
+.card-noMessage {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  color: black;
+}

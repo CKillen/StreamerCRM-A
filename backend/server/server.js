@@ -1,9 +1,4 @@
 const fs = require('fs');
-const https = require('https');
-const bundle = fs.readFileSync('/etc/apache2/bundle/www_streamercrm_com.ca-bundle');
-const privateKey = fs.readFileSync('/etc/ssl/private/www_streamercrm_com.key');
-const certificate = fs.readFileSync('/etc/ssl/certs/www_streamercrm_com.crt');
-const credentials = { ca: bundle, key: privateKey, cert: certificate };
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -27,12 +22,29 @@ app.use(cors());
 app.use('/user', user)
 app.use('/api', api);
 
-const server = https.createServer(credentials, app);
-initDb((err) => {
-  server.listen(port, () => {
-    getDbUserCollection().createIndex({ email: 1, username: 1 }, { unique: true });
-    console.log(`server running on ${port}`);
-    if(err) throw err;
+if(config.NODE_ENV === 'dev') {
+  initDb((err) => {
+    app.listen(port, () => {
+      getDbUserCollection().createIndex({ email: 1, username: 1 }, { unique: true });
+      console.log(`server running on ${port}`);
+      if(err) throw err;
+    })
+  })
+}
+
+if(config.NODE_ENV === 'production') {
+  const https = require('https');
+  const bundle = fs.readFileSync(config.ssl.bundle);
+  const privateKey = fs.readFileSync(config.ssl.private_key);
+  const certificate = fs.readFileSync(config.ssl.certificate);
+  const credentials = { ca: bundle, key: privateKey, cert: certificate };
+  const server = https.createServer(credentials, app);
+  initDb((err) => {
+    server.listen(port, () => {
+      getDbUserCollection().createIndex({ email: 1, username: 1 }, { unique: true });
+      console.log(`server running on ${port}`);
+      if(err) throw err;
+    });
+    
   });
-  
-});
+}

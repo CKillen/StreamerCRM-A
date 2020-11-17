@@ -28,9 +28,11 @@ export default function ChatSection({ username, id }) {
     setBadgeSets(combinedBadges);
   }, [globalBadges.data.badge_sets, channelBadges.data.badge_sets])
   let chats = useTwitchMessages(username);
+  let noMessage = chats.length === 0 ? "No messages yet! Wait for someone to message your twitch chat." : ""
   return (
       <div className="chat-section">
         <List divided className="chat-list">
+          {noMessage}
           {chats.map((chatInfo, index) => {
             return <ChatLine {...chatInfo} key={index} badgeSets={badgeSets} />
           })}
