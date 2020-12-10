@@ -51,6 +51,28 @@ router.post('/updateViewer', (routeReq, routeRes) => {
   })
 })
 
+router.get('/historical', (routeReq, routeRes) => {
+  //This will pull all the historical stream that are requestable
+  routeRes.json({
+    dates: [
+      '12092020',
+      '12082020',
+      '12072020',
+    ]
+  })
+})
+
+router.get('/historical/:date', (routeReq, routeRes) => {
+  const { date } = routeReq.params.date;
+  console.log(date);
+  routeRes.json({
+    chat: [
+      "raw chat 1",
+      "raw chat 2",
+      "raw chat 3",
+    ]
+  })
+})
 function logError(err) {
   //TODO actual logger replacement
   console.log(err);
