@@ -54,3 +54,22 @@ export const useGetViewer = (name) => {
 
   return { loading: !complete, viewerInfo: viewerInfo.current }
 }
+
+export const useGetHistoricals = () => {
+  //const { complete, data } = useAPI(`${config.apiUrl}historical`);
+  //Static values for testing uncomment above line to pull from backend
+  let complete = true;
+  let data = { dates: ["12092020", "12082020", "12072020"]};
+  return { loading: !complete, dates: data.dates }
+}
+
+export const useGetHistoricalData = (date) => {
+  //TODO Possibly format date correctly
+  //const { complete, data } = useAPI(`${config.apiUrl}historical/${date}`);
+  let complete = true;
+  let data = { chats: {
+    username: "Jim",
+    chat: "laksdj",
+    time: "11am",
+  }}
+}
